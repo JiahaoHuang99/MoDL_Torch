@@ -1,0 +1,26 @@
+# Compiled source #
+###################
+*.o
+*.so
+*.pyc
+
+# Logs and temporaries #
+########################
+*.log
+*~
+.coverage
+.DS_Store
+
+# Folders #
+###########
+build/
+dist/
+*.egg-info/
+__pycache__/
+.eggs/
+.idea/
+
+weights/
+results/
+data/
+

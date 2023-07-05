@@ -1,6 +1,8 @@
 """
 This file contains some supporting functions used during training and testing.
 """
+
+import os
 import time
 import numpy as np
 import h5py as h5
@@ -202,3 +204,12 @@ def getData(trnTst='testing',num=100,sigma=.01):
     if trnTst=='testing':
         atb=c2r(atb)
     return org,atb,csm,mask
+
+
+def mkdir(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+        # print(f'create {path}')
+    else:
+        pass
+        # print(f'{path} already exists.')

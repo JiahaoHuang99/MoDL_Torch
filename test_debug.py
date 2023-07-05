@@ -28,6 +28,16 @@ with torch.no_grad():
     for batch, data in enumerate(testing_generator):
         org, atb, csm, mask = data
         org, atb, csm, mask = org.to(device), atb.to(device), csm.to(device), mask.to(device)
+
+        # convert the tensor to numpy and save it
+        import matplotlib.pyplot as plt
+        org_abs = np.abs(org.detach().cpu().numpy())
+        plt.imsave('./tmp/org_abs.png', org_abs[0], cmap=plt.cm.gray)
+        # csm (C, H, W) save each channel
+        csm_abs = np.abs(csm.detach().cpu().numpy())
+        for i in range(csm_abs.shape[1]):
+            plt.imsave(f'./tmp/csm_abs_{i}.png', csm_abs[0, i], cmap=plt.cm.gray)
+
         # output atb and org are 2-chaneel
         out = model.forward(atb, csm, mask)
         out = r2c(out)

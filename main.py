@@ -30,7 +30,7 @@ validation_set = MyDataset(filename = '/media/ssd/fanwen/dataset.hdf5', training
 training_generator = torch.utils.data.DataLoader(training_set, batch_size=batch_size, shuffle=True, num_workers=4)
 validation_generator = torch.utils.data.DataLoader(validation_set, batch_size=val_batch, shuffle=True, num_workers=4)
 # change the savedir for your model.
-save_dir = '/media/ssd/fanwen/MoDL/'
+save_dir = './result/'
 TRNLOSS = []
 VALLOSS = []
 # here to check the data_loader
@@ -68,6 +68,7 @@ for epoch in range(epochs):
         VALLOSS.append(LOSS)
         print('------------epoch: ', epoch, 'valloss: ', LOSS)
     # save the training and validation loss to npy
+    mkdir(save_dir)
     np.save(save_dir + 'loss.npy', TRNLOSS, VALLOSS)
     # save every epoch
     modelname = 'model' + str(epoch).zfill(3) + '.pth'
